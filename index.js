@@ -2,16 +2,17 @@ const inquirer = require('inquirer');
 const { MainMenuQuestions, AddDepartmentQuestions, AddRoleQuestions, AddEmployeeQuestions, UpdateEmployeeRoleQuestions } = require('/Users/danielle/bootcamp/employee-tracker-w12/questions.js')
 const EmployeeDatabase = require('/Users/danielle/bootcamp/employee-tracker-w12/db/EmployeeDatabase.js');
 
-// Create a new instance of the EmployeeDatabase class
+// Create new database using EmployeeDatabase case
 const db = new EmployeeDatabase ({
     host: 'localhost',
     user: 'root',
-    // Include password?
     database: 'employee_db'
 });
 
 db.connect();
 
+// Utilising inquirer to prompt questions to user
+// Then create a switch case to respond to user response
 const doMenuQuestions = () => {
 
     inquirer 
@@ -44,9 +45,9 @@ const doMenuQuestions = () => {
     })
 }
 
+// Get departments then show table
 const view_departments = () => {
 
-    // Get the departments from db
     db.getDepartments().then((results) => {
 
         console.table(results);
@@ -55,9 +56,9 @@ const view_departments = () => {
     });
 }
 
+// Get roles then show role table
 const view_roles = () => {
 
-    // Get the Roles from db
     db.getRoles().then((results) => {
 
         console.table(results);
@@ -66,9 +67,9 @@ const view_roles = () => {
     });
 }
 
+// Get employees then show table
 const view_employees = () => {
 
-    // Get the employees from db
     db.getEmployees().then((results) => {
 
         console.table(results);
@@ -77,6 +78,7 @@ const view_employees = () => {
     });
 }
 
+// Take department name from user then add and show results
 const add_department = () => {
     inquirer
     .prompt(AddDepartmentQuestions)
@@ -88,6 +90,7 @@ const add_department = () => {
     })
 }
 
+// Take department role from user, ask elaborative questions, push answers then add role info and show results
 const add_role = () => {
     db.getDepartments().then((results) =>  {
 
@@ -110,6 +113,7 @@ const add_role = () => {
     });
 }
 
+// Take employee details from user by asking elaborative questions, push answers then add employee info and show results
 const add_employee = () => {
 
     db.getRoles().then((results) => {
@@ -151,6 +155,7 @@ const add_employee = () => {
     });
 }
 
+// Take in which role to be updated by user, ask elaborative questions then update information
 const update_role = () => {
 
     db.getEmployees().then((results) => {

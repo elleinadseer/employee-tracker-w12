@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 
+// Database class
 class Database {
     constructor (options) {
         this.options = options
@@ -24,7 +25,6 @@ class Database {
             {
                 host: host,
                 user: user,
-                // password: password,
                 database: database
             },
             console.log('Connection established to employee database.')

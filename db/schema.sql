@@ -1,8 +1,11 @@
+/* Drop and create employee_db to avoid duplication */
 DROP DATABASE IF EXISTS employee_db;
 CREATE DATABASE employee_db;
 
 USE employee_db;
 
+/* Create department, role and employee tables
+Information same as task requirements */ 
 CREATE TABLE department
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

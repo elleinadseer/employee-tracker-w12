@@ -1,10 +1,12 @@
 const Database = require('/Users/danielle/bootcamp/employee-tracker-w12/db/Database.js');
 
+// Employee database class extended from Database class from Database.js
 class EmployeeDatabase extends Database {
     constructor(options) {
         super(options);
     }
 
+    // Select all from department
     getDepartments() {
         return new Promise((resolve, reject) => {
             this.db.query('SELECT * FROM department', (err, results) => {
@@ -16,6 +18,7 @@ class EmployeeDatabase extends Database {
         });
     }
 
+    // Select roles 
     getRoles() {
 
         return new Promise ((resolve, reject) => {
@@ -28,6 +31,7 @@ class EmployeeDatabase extends Database {
         });
      }
 
+     // Select employee info
      getEmployees() {
 
         return new Promise((resolve, reject) => {
@@ -52,6 +56,7 @@ class EmployeeDatabase extends Database {
             )}
             )}
 
+            // Create new department
     addDepartment(department) {
         return new Promise((resolve, reject) => {
             this.db.query ('INSERT INTO department SET ?', { name: department.department_name }, (err, results) => {
@@ -63,6 +68,7 @@ class EmployeeDatabase extends Database {
         });
     }
 
+    // Create new role
     addRole(role) {
 
         const roleData = {
@@ -81,6 +87,7 @@ class EmployeeDatabase extends Database {
         }) 
     }
 
+    // Create new employee
     addEmployee(employee) {
 
         const employeeData = {
@@ -100,6 +107,7 @@ class EmployeeDatabase extends Database {
         }) 
     }
 
+    // Update employee role
     updateEmployeeRole(employee) {
 
         return new Promise ((resolve, reject) => {
